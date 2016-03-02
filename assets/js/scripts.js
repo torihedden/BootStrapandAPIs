@@ -1,13 +1,28 @@
 $(function(){
    'use strict';
 
-   var locationVal = $(".locationInput").val();
-   console.log(locationVal);
-   //for some reason it doesn't seem to like the locationInput variable
+  //  var locationVal = $(".locationInput").val();
 
-  //  $.getJSON("https://api.yelp.com/v2/search/?location=" + locationInput + "&sort=1&limit=3&category_filter=icecream", function(json) {
-  //    console.log("locationInput");
-  //  });
+   $(".locationInput").blur(function(){
+     console.log($(".locationInput").val())
+     $("#1").append($(".locationInput").val());
+   });
+
+   $(".movieInput").blur(function(){
+     console.log($(".movieInput").val())
+
+
+
+    $.getJSON("http://www.omdbapi.com/?t=" + $(".movieInput").val() + "&y=&plot=short&r=json", function(json) {
+      $(".rating").html(json.imdbRating);
+      $(".poster").html('<img src =' + json.Poster + '></img>');
+    });
+   });
+
+
+
+
+   //for some reason it doesn't seem to like the locationInput variable
 
 
 
