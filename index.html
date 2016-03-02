@@ -21,16 +21,27 @@
 
   <body>
 
-    <p>Notflix & Chill</p>
+    <div class = "container-fluid">
+      <!-- Use .container-fluid for a full width container, spanning the entire width of your viewport-->
 
-    <label>Where you at?</label>
-    <input type="text"></input>
+      <h1 class = "text-center">Notflix & Chill</h1>
 
-    <!-- <label>What do you like?</label>
-    <input type="text"></input> -->
+      <div class="row"> <!--opens the row-->
+        <div class="col-md-6">
+          <label>Where you at?</label>
+          <input type="text" class = "locationInput"></input>
+        </div>
 
-    <div></div>
+        <div class="col-md-6">
+          <label>What do you like?</label>
+          <input type="text" class = "genreInput"></input>
+        </div>
+      </div><!--closes the row-->
 
+      <div class = "maps"></div>
+
+    </div>
+    <!-- closes container-fluid-->
 
     <script src = "assets/JS/scripts.js"></script>
   </body>
