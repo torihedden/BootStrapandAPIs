@@ -42,7 +42,7 @@ $(function(){
 
       $("#icecream-shops").html("");
       for ( var i = 0; i < 3; i++){
-        $("#icecream-shops").append(result.businesses[i].name);
+        $("#icecream-shops").append('<a href =' + result.businesses[i].url + '>' + result.businesses[i].name + '</a>');
         $("#icecream-shops").append(": " + result.businesses[i].rating + " / 5 <br>");
       }
     });
@@ -52,7 +52,7 @@ $(function(){
     $.getJSON("http://www.omdbapi.com/?t=" + $(".movieInput").val() + "&y=&plot=short&r=json",
       function(json) {
         $(".poster").html('<img src =' + json.Poster + ' width = 200px></img>');
-        $(".rating").html("Rating: " + json.imdbRating);
+        $(".rating").html("Rating: " + json.imdbRating + " / 10");
       });
   });
 });
