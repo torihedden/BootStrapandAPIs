@@ -24,28 +24,33 @@
     <div class = "container-fluid">
       <!-- Use .container-fluid for a full width container, spanning the entire width of your viewport-->
 
+      <div class = "jumbotron">
       <h1 class = "text-center">Notflix & Chill</h1>
+      <h2 class = "text-center">Thanks for closing your API, Netflix</h2>
+    </div>
 
       <div class="row"> <!--opens the row-->
         <div class="col-md-6" id = "1">
           <label>Where you at?</label>
           <input type="text" class = "locationInput"></input>
+          <div id = "map"></div>
         </div>
 
         <div class="col-md-6" id = "2">
           <label>What movie?</label>
           <input type="text" class = "movieInput"></input>
-          <div class = "rating"></div>
-          <div class = "poster"></div>
+          <div class = "poster text-center"></div>
+          <div class = "rating text-center"></div>
         </div>
       </div><!--closes the row-->
 
-      <div class = "maps"></div>
+      <input class="btn btn-default" type="submit" value="Submit">
 
     </div>
     <!-- closes container-fluid-->
 
     <script src = "assets/JS/scripts.js"></script>
+
   </body>
 
 </html>

@@ -1,33 +1,26 @@
 $(function(){
    'use strict';
 
-  //  var locationVal = $(".locationInput").val();
+  $(".btn-default").click(function(){
 
-   $(".locationInput").blur(function(){
-     console.log($(".locationInput").val())
-     $("#1").append($(".locationInput").val());
-   });
+    // begin geocoding nightmare
 
-   $(".movieInput").blur(function(){
-     console.log($(".movieInput").val())
+    //MapQuest geocoding a little easier to use
+    $.getJSON("http://www.mapquestapi.com/geocoding/v1/address?key=wmPNY9NeQMO6WMLlQnSFupekzhtiZlTw&location=" + $(".locationInput").val(), function(json){
+        var latNum = json.results[0].locations[0].latLng.lat
+        var longNum = json.results[0].locations[0].latLng.lng
 
+    //use the found lat and long and use them in Google Maps' static map api
+      $("#map").append(
+        '<img src="https://maps.googleapis.com/maps/api/staticmap?center=' + latNum + ',' + longNum + '&zoom=14&size=420x280&key=AIzaSyB76RrlbvbkCXkPOgP8puUTvHDDFeZsIpA" alt="Appointment location" width="90%"></img>'
+      ) //closes append
+    }); //closes .getJSON mapquest
+    //end geocoding nightmare
 
-
+    //pulls from Open Movie Database
     $.getJSON("http://www.omdbapi.com/?t=" + $(".movieInput").val() + "&y=&plot=short&r=json", function(json) {
-      $(".rating").html(json.imdbRating);
-      $(".poster").html('<img src =' + json.Poster + '></img>');
+      $(".poster").html('<img src =' + json.Poster + ' width = 200px></img>');
+      $(".rating").html("Rating: " + json.imdbRating);
     });
-   });
-
-
-
-
-   //for some reason it doesn't seem to like the locationInput variable
-
-
-
-//append the first result of the query to div
-//will they be removed from the page if you hit refresh?
-//or give user an option to clear the old search and
-
+  });
 });
