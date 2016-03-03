@@ -5,9 +5,11 @@ $(function(){
 
     //based on work found at
     //https://github.com/jvojens2/frontend-nanodegree-neighborhood-map/commits/master/js
+    //most comments are mine, some are from author of the github
+
     //Generates a random number and returns it as a string for OAuthentication
     function generateNonce() {
-      return (Math.floor(Math.random() * 1e12).toString()); //generate a string of 12 random integers
+      return (Math.floor(Math.random() * 1e12).toString()); //generate a string of 12 random integers... the nonce
     }
 
     var yelpURL = "https://api.yelp.com/v2/search";
@@ -23,18 +25,18 @@ $(function(){
                                    // AJAX or else the oauth-signature will be wrong.
 
       location : $(".locationInput").val(), //sometimes APIs can handle spaces in query parameters, sometimes not?
-      category_filter : "icecream" //no comma after last element in objects
+      category_filter : "icecream" //no comma after last element in objects. we want Yelp's icecream category because of chill.
      };
 
      var httpMethod = "GET" //the default method, but I do want to GET
-     var signature = oauthSignature.generate(httpMethod, yelpURL, parameters, "Lf8cDR-znysz3FbH568hkU0DgR4", "ocrgkTuMrhpf2y9r5hFZR5N3U5I", { encodeSignature: false}); //this generates (fxn defined by oauth-signature.js) the oauthSignature
+     var signature = oauthSignature.generate(httpMethod, yelpURL, parameters, "Lf8cDR-znysz3FbH568hkU0DgR4", "ocrgkTuMrhpf2y9r5hFZR5N3U5I", { encodeSignature: false}); //this generate (fxn defined by oauth-signature.js) the oauthSignature
     parameters.oauth_signature = signature; //adds a new property of the object "parameters", whose value is
                                                   //signature, defined above
 
     $.ajax({
       dataType: 'jsonp',   //$.ajax() takes one parameter, [settings]   //also jsonp is json with padding
       url: yelpURL,
-      method: 'GET', // This is the default, but I thought I'd show it
+      method: 'GET', // This is the default, but I thought I'd show it (Kelly's notes from lessons)
       data: parameters,
       cache: true //This is crucial to include as well to prevent jQuery from adding on a cache-buster parameter "_=23489489749837", invalidating our oauth-signature
     }).done(function (result) {   //.done is from lecture notes. denotes end of ajax call completion
